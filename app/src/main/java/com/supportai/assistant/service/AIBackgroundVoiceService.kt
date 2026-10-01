@@ -14,7 +14,11 @@ import com.supportai.assistant.R
 import com.supportai.assistant.engine.AICommand
 import com.supportai.assistant.engine.AIVoiceEngine
 import com.supportai.assistant.engine.CommandParser
+import com.supportai.assistant.engine.GeminiAIEngine
 import com.supportai.assistant.ui.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AIBackgroundVoiceService : Service() {
 
@@ -43,24 +47,21 @@ class AIBackgroundVoiceService : Service() {
                 handleVoiceInput(recognizedText)
             },
             onError = { _ ->
-                // Ovoz tugaganda yoki xato bo'lganda orqa fonda qayta tinglashni davom ettirish
                 if (isListeningLoopActive) {
                     voiceEngine.startListening()
                 }
             }
         )
 
-        // Tinglashni boshlash
         voiceEngine.startListening()
     }
 
     private fun handleVoiceInput(text: String) {
         val clean = text.lowercase().trim()
 
-        // Floating overlay ko'rsatish
         overlayManager.showOverlay("Siz: $text")
 
-        kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).kotlinx.coroutines.launch {
+        CoroutineScope(Dispatchers.Main).launch {
             val (command, responseSpeech) = GeminiAIEngine.processVoiceCommand(this@AIBackgroundVoiceService, clean)
 
             overlayManager.updateText(responseSpeech, autoHideSeconds = 5)
@@ -98,12 +99,9 @@ class AIBackgroundVoiceService : Service() {
                 is AICommand.TypeText -> {
                     AIAccessibilityService.instance?.inputText(command.text)
                 }
-                else -> {}
             }
         }
-        }
 
-        // Qayta eshitish uchun tinglashni davom ettirish
         if (isListeningLoopActive) {
             voiceEngine.startListening()
         }
