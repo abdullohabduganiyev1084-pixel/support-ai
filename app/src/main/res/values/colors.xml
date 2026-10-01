@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dark Liquid Glass - Asosiy qora shisha fonlari -->
+    <!-- Asosiy ranglar va Mavzu ranglari -->
+    <color name="bg_main">#06080E</color>
+    <color name="bg_card">#121824</color>
+    <color name="bg_card_secondary">#1B2333</color>
+    <color name="bg_drawer">#0E1420</color>
+
+    <!-- Neon / Siri urg'ulari -->
+    <color name="neon_cyan">#00F2FE</color>
+    <color name="neon_blue">#4FACFE</color>
+    <color name="neon_purple">#7F00FF</color>
+    <color name="neon_pink">#E94057</color>
+    <color name="neon_green">#00F5A0</color>
+    <color name="neon_red">#FF4D6D</color>
+
+    <!-- Dark Liquid Glass ranglari -->
     <color name="glass_bg_deep">#06080E</color>
     <color name="glass_bg_surface">#CC0E1422</color>
     <color name="glass_bg_card">#80141C2E</color>
@@ -8,7 +22,7 @@
     <color name="glass_border">#2D3F5C</color>
     <color name="glass_border_glow">#4D00F2FE</color>
 
-    <!-- Siri Fluid Glow / Neon Neon ranglar -->
+    <!-- Siri Fluid ranglari -->
     <color name="siri_cyan">#00F2FE</color>
     <color name="siri_blue">#4FACFE</color>
     <color name="siri_purple">#7F00FF</color>
@@ -17,10 +31,11 @@
     <color name="siri_amber">#FFB300</color>
 
     <!-- Matn ranglari -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
     <color name="text_glass_primary">#F8FAFC</color>
     <color name="text_glass_secondary">#94A3B8</color>
     <color name="text_glass_muted">#64748B</color>
-
-    <color name="neon_green">#00F5A0</color>
-    <color name="neon_red">#FF4D6D</color>
+    <color name="divider_color">#1E293B</color>
 </resources>
