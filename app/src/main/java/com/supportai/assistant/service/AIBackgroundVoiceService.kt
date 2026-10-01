@@ -99,6 +99,7 @@ class AIBackgroundVoiceService : Service() {
                 is AICommand.TypeText -> {
                     AIAccessibilityService.instance?.inputText(command.text)
                 }
+                else -> {}
             }
         }
 
