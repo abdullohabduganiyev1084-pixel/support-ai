@@ -11,26 +11,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.supportai.assistant.R
 import com.supportai.assistant.engine.AICommand
 import com.supportai.assistant.engine.AIVoiceEngine
-import com.supportai.assistant.engine.CommandParser
+import com.supportai.assistant.engine.GeminiAIEngine
 import com.supportai.assistant.service.AIAccessibilityService
 import com.supportai.assistant.service.AIBackgroundVoiceService
-import com.supportai.assistant.utils.AnimatedLogoView
 import com.supportai.assistant.utils.PermissionHelper
+import com.supportai.assistant.utils.SiriWaveOrbView
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private lateinit var switchAiMaster: SwitchCompat
     private lateinit var tvAiStatus: TextView
-    private lateinit var animatedLogoView: AnimatedLogoView
+    private lateinit var siriOrbView: SiriWaveOrbView
     private lateinit var tvTranscript: TextView
     private lateinit var tvAiResponse: TextView
-    private lateinit var btnVoiceTest: AppCompatButton
+    private lateinit var cardMicCenter: View
 
     private var localVoiceEngine: AIVoiceEngine? = null
 
@@ -51,14 +52,19 @@ class HomeFragment : Fragment() {
 
         switchAiMaster = root.findViewById(R.id.switch_ai_master)
         tvAiStatus = root.findViewById(R.id.tv_ai_status)
-        animatedLogoView = root.findViewById(R.id.animated_logo_view)
+        siriOrbView = root.findViewById(R.id.siri_orb_view)
         tvTranscript = root.findViewById(R.id.tv_transcript)
         tvAiResponse = root.findViewById(R.id.tv_ai_response)
-        btnVoiceTest = root.findViewById(R.id.btn_voice_test)
+        cardMicCenter = root.findViewById(R.id.card_mic_center)
 
         setupAiMasterSwitch()
-        setupVoiceTest()
-        setupQuickShortcuts(root)
+        setupSiriVoiceEngine()
+
+        // Markaziy Siri shariga bosganda ovozli buyruq olish
+        cardMicCenter.setOnClickListener {
+            siriOrbView.setListeningState(true)
+            localVoiceEngine?.startListening()
+        }
 
         return root
     }
@@ -66,7 +72,6 @@ class HomeFragment : Fragment() {
     private fun setupAiMasterSwitch() {
         switchAiMaster.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // Ruxsatlarni tekshirish
                 val context = requireContext()
                 if (!PermissionHelper.hasRecordAudioPermission(context)) {
                     Toast.makeText(context, "Avval mikrofonga ruxsat bering!", Toast.LENGTH_SHORT).show()
@@ -74,14 +79,12 @@ class HomeFragment : Fragment() {
                     return@setOnCheckedChangeListener
                 }
 
-                tvAiStatus.text = getString(R.string.ai_status_active)
+                tvAiStatus.text = "AI Faol (Erkak Ovozi)"
                 tvAiStatus.setTextColor(requireContext().getColor(R.color.neon_green))
-                animatedLogoView.setActivePulse(true)
                 startBackgroundService()
             } else {
-                tvAiStatus.text = getString(R.string.ai_status_inactive)
+                tvAiStatus.text = "AI O'chirilgan"
                 tvAiStatus.setTextColor(requireContext().getColor(R.color.neon_red))
-                animatedLogoView.setActivePulse(false)
                 stopBackgroundService()
             }
         }
@@ -101,87 +104,66 @@ class HomeFragment : Fragment() {
         requireContext().stopService(intent)
     }
 
-    private fun setupVoiceTest() {
+    private fun setupSiriVoiceEngine() {
         localVoiceEngine = AIVoiceEngine(
             context = requireContext(),
-            onResult = { text ->
-                tvTranscript.text = text
-                val command = CommandParser.parse(text)
-                executeParsedCommand(command, text)
+            onResult = { recognizedText ->
+                siriOrbView.setListeningState(false)
+                tvTranscript.text = recognizedText
+
+                // Gemini AI orqali tahlil qilish va bajarish
+                lifecycleScope.launch {
+                    tvAiResponse.text = "Gemini AI tahlil qilmoqda..."
+                    val (command, responseSpeech) = GeminiAIEngine.processVoiceCommand(requireContext(), recognizedText)
+
+                    tvAiResponse.text = responseSpeech
+                    localVoiceEngine?.speak(responseSpeech)
+
+                    executeCommand(command)
+                }
             },
             onError = { error ->
-                tvTranscript.text = "Xatolik: $error"
+                siriOrbView.setListeningState(false)
+                tvTranscript.text = "Ovoz qabul qilinmadi: $error"
             },
             onReady = {
-                tvTranscript.text = getString(R.string.listening_text)
+                siriOrbView.setListeningState(true)
+                tvTranscript.text = "Eshitmoqdaman... Gapiring..."
             }
         )
-
-        btnVoiceTest.setOnClickListener {
-            localVoiceEngine?.startListening()
-        }
     }
 
-    private fun executeParsedCommand(command: AICommand, rawText: String) {
+    private fun executeCommand(command: AICommand) {
         when (command) {
             is AICommand.OpenYouTube -> {
-                val resp = getString(R.string.ai_voice_ready_youtube)
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
                 AIAccessibilityService.instance?.automateYouTube(command.searchQuery) {}
             }
             is AICommand.SeekVideo -> {
-                val resp = getString(R.string.ai_voice_seeking)
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
                 val percent = (command.targetMinute.toFloat() / 15f).coerceIn(0.1f, 0.9f)
                 AIAccessibilityService.instance?.seekVideoProgress(percent)
             }
             is AICommand.OpenTelegram -> {
-                val resp = getString(R.string.ai_voice_ready_telegram)
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
                 AIAccessibilityService.instance?.automateTelegram(command.chatTarget, command.messageText) {}
             }
             is AICommand.OpenGallery -> {
-                val resp = getString(R.string.ai_voice_ready_gallery)
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
                 AIAccessibilityService.instance?.automateGallery {}
             }
             is AICommand.OpenSettings -> {
-                val resp = getString(R.string.ai_voice_ready_settings)
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
                 AIAccessibilityService.instance?.automateSettings {}
             }
-            else -> {
-                val resp = "Eshitdim: $rawText"
-                tvAiResponse.text = resp
-                localVoiceEngine?.speak(resp)
+            is AICommand.OpenCustomApp -> {
+                AIAccessibilityService.instance?.launchAppByName(command.appName)
             }
-        }
-    }
-
-    private fun setupQuickShortcuts(root: View) {
-        root.findViewById<View>(R.id.btn_test_youtube).setOnClickListener {
-            tvTranscript.text = "YouTubeni och va O'zbekiston haqida video qo'y"
-            executeParsedCommand(AICommand.OpenYouTube("O'zbekiston"), "YouTube")
-        }
-
-        root.findViewById<View>(R.id.btn_test_telegram).setOnClickListener {
-            tvTranscript.text = "Telegramda xabar yozish"
-            executeParsedCommand(AICommand.OpenTelegram(), "Telegram")
-        }
-
-        root.findViewById<View>(R.id.btn_test_gallery).setOnClickListener {
-            tvTranscript.text = "Galereyani och"
-            executeParsedCommand(AICommand.OpenGallery, "Galereya")
-        }
-
-        root.findViewById<View>(R.id.btn_test_settings).setOnClickListener {
-            tvTranscript.text = "Sozlamalarni och"
-            executeParsedCommand(AICommand.OpenSettings, "Sozlamalar")
+            is AICommand.GoHome -> {
+                AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME)
+            }
+            is AICommand.GoBack -> {
+                AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK)
+            }
+            is AICommand.TypeText -> {
+                AIAccessibilityService.instance?.inputText(command.text)
+            }
+            else -> {}
         }
     }
 

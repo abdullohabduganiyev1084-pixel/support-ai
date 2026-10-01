@@ -6,63 +6,66 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="6dp">
 
-    <!-- Glowing Animated Floating AI Orb -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_orb"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        app:cardBackgroundColor="#000000"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="16dp">
+    <!-- Glowing Siri Liquid Orb -->
+    <FrameLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp">
 
-        <ImageView
-            android:id="@+id/iv_orb_logo"
+        <com.supportai.assistant.utils.SiriWaveOrbView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/support_ai_logo"
-            android:contentDescription="@string/app_name" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="match_parent" />
 
-    <!-- Jonli Gapirish va Javob Berish Buluti -->
-    <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_orb"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="#000000"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/support_ai_logo"
+                android:contentDescription="@string/app_name" />
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <!-- Liquid Frosted Speech Bubble -->
+    <LinearLayout
         android:id="@+id/card_speech_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        app:cardBackgroundColor="#1A2234"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="12dp">
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_liquid_glass"
+        android:maxWidth="260dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_overlay_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="240dp"
-            android:orientation="vertical"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="10dp">
+            android:fontFamily="sans-serif-black"
+            android:text="Support AI (Erkak Ovozi)"
+            android:textColor="@color/siri_cyan"
+            android:textSize="11sp"
+            android:letterSpacing="0.04" />
 
-            <TextView
-                android:id="@+id/tv_overlay_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Support AI"
-                android:textColor="@color/neon_cyan"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_overlay_speech"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Eshitmoqdaman..."
-                android:textColor="@color/text_primary"
-                android:textSize="13sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tv_overlay_speech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Eshitmoqdaman..."
+            android:textColor="@color/text_glass_primary"
+            android:textSize="13sp" />
+    </LinearLayout>
 
 </LinearLayout>

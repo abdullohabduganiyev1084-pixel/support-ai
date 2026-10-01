@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_main"
+    android:background="@drawable/bg_dark_fluid"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,160 +16,148 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="@string/settings_title"
-            android:textColor="@color/neon_cyan"
-            android:textSize="22sp" />
+            android:text="AI SOZLAMALARI"
+            android:textColor="@color/siri_cyan"
+            android:textSize="22sp"
+            android:letterSpacing="0.04" />
 
-        <!-- Tilni Sozlash (STT Language) -->
-        <androidx.cardview.widget.CardView
+        <!-- 1. Google Gemini API Key Sozlamasi -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="⚡ Google Gemini AI (API Key)"
+                android:textColor="@color/text_glass_primary"
+                android:textSize="15sp" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="4dp"
+                android:text="AIning o'ta aqlli bo'lishi va barcha murakkab buyruqlarni erkin tushunishi uchun Gemini API kalitingizni kiriting."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-bold"
-                    android:text="@string/setting_language_title"
-                    android:textColor="@color/text_primary"
-                    android:textSize="15sp" />
+            <EditText
+                android:id="@+id/et_gemini_api_key"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_dark_fluid"
+                android:hint="AIzaSy... (Gemini API Key)"
+                android:inputType="textPassword"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/text_glass_primary"
+                android:textColorHint="@color/text_glass_muted"
+                android:textSize="14sp" />
 
-                <RadioGroup
-                    android:id="@+id/rg_languages"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save_api_key"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_glass_glow"
+                android:text="Kalitni Saqlash"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/rb_lang_uz"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:paddingVertical="8dp"
-                        android:text="@string/lang_uz"
-                        android:textColor="@color/text_primary"
-                        app:buttonTint="@color/neon_cyan" />
-
-                    <RadioButton
-                        android:id="@+id/rb_lang_ru"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="8dp"
-                        android:text="@string/lang_ru"
-                        android:textColor="@color/text_primary"
-                        app:buttonTint="@color/neon_cyan" />
-
-                    <RadioButton
-                        android:id="@+id/rb_lang_en"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="8dp"
-                        android:text="@string/lang_en"
-                        android:textColor="@color/text_primary"
-                        app:buttonTint="@color/neon_cyan" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Hotword Sozlamalari ("Hey AI") -->
-        <androidx.cardview.widget.CardView
+        <!-- 2. Ovoz (Erkak Ovozi / Male Voice) -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="🎙️ AI Ovoz Tembri (Erkak Ovozi)"
+                android:textColor="@color/text_glass_primary"
+                android:textSize="15sp" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="4dp"
+                android:text="AI jiddiy, professional va ravon erkak ovozida o'zbek tilida javob beradi."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="12sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_test_speech"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_dark_fluid"
+                android:text="🔊 Erkak Ovozini Sinab Ko'rish"
+                android:textAllCaps="false"
+                android:textColor="@color/siri_cyan"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="Doimiy tinglash ('Hey AI')"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_wake_word"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:checked="true"
-                        app:thumbTint="@color/neon_cyan"
-                        app:trackTint="@color/neon_blue" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Boshqa dasturda (YouTube, Telegram) turganingizda ham ovozni taniy oladi."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Ovozli Javob (TTS Sozlamalari) -->
-        <androidx.cardview.widget.CardView
+        <!-- 3. Tanish Tili -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="🌐 Tanish Tili"
+                android:textColor="@color/text_glass_primary"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_languages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-bold"
-                    android:text="@string/setting_tts_title"
-                    android:textColor="@color/text_primary"
-                    android:textSize="15sp" />
-
-                <TextView
+                <RadioButton
+                    android:id="@+id/rb_lang_uz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="AI buyruqni bajarib bo'lgach ovoz chiqarib o'zbekcha hisobot beradi ('Tayyor, qaysi videoga o'tkizay?')."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp" />
+                    android:checked="true"
+                    android:text="O'zbek tili (uz-UZ)"
+                    android:textColor="@color/text_glass_primary"
+                    app:buttonTint="@color/siri_cyan" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_test_speech"
+                <RadioButton
+                    android:id="@+id/rb_lang_ru"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_card"
-                    android:text="🔊 Ovozni sinab ko'rish"
-                    android:textAllCaps="false"
-                    android:textColor="@color/neon_cyan"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:text="Русский язык (ru-RU)"
+                    android:textColor="@color/text_glass_primary"
+                    app:buttonTint="@color/siri_cyan" />
+
+                <RadioButton
+                    android:id="@+id/rb_lang_en"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English (en-US)"
+                    android:textColor="@color/text_glass_primary"
+                    app:buttonTint="@color/siri_cyan" />
+            </RadioGroup>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

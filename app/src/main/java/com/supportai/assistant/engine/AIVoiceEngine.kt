@@ -68,14 +68,24 @@ class AIVoiceEngine(
     private fun initTextToSpeech() {
         textToSpeech = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                // O'zbek tili yoki unga mos eng yaqin tilni o'rnatish
                 val uzLocale = Locale("uz", "UZ")
                 val langResult = textToSpeech?.setLanguage(uzLocale)
                 if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                     textToSpeech?.setLanguage(Locale.getDefault())
                 }
-                textToSpeech?.setPitch(1.05f)
-                textToSpeech?.setSpeechRate(0.95f)
+
+                // Erkak kishi ovozini o'rnatish (Deep resonant male pitch & rate)
+                textToSpeech?.voices?.find { voice ->
+                    voice.name.contains("male", ignoreCase = true) ||
+                    voice.name.contains("man", ignoreCase = true) ||
+                    voice.name.contains("ru-ru-x-dfc#male", ignoreCase = true)
+                }?.let { maleVoice ->
+                    textToSpeech?.voice = maleVoice
+                }
+
+                // Erkak tembri uchun pastroq va qat'iy pitch
+                textToSpeech?.setPitch(0.82f)
+                textToSpeech?.setSpeechRate(0.98f)
                 isTtsReady = true
             }
         }

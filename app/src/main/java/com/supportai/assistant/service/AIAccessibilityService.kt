@@ -42,6 +42,29 @@ class AIAccessibilityService : AccessibilityService() {
     }
 
     /**
+     * Ilovani nomi bo'yicha qidirib ochish (Instagram, Telegram, TikTok, Kamera va h.k.)
+     */
+    fun launchAppByName(name: String): Boolean {
+        val pm = packageManager
+        val mainIntent = Intent(Intent.ACTION_MAIN, null).apply {
+            addCategory(Intent.CATEGORY_LAUNCHER)
+        }
+        val apps = pm.queryIntentActivities(mainIntent, 0)
+        for (app in apps) {
+            val label = app.loadLabel(pm).toString().lowercase()
+            if (label.contains(name.lowercase()) || name.lowercase().contains(label)) {
+                val launchIntent = pm.getLaunchIntentForPackage(app.activityInfo.packageName)
+                if (launchIntent != null) {
+                    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(launchIntent)
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    /**
      * Ilovani ochish
      */
     fun launchApp(packageName: String): Boolean {

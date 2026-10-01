@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_main"
+    android:background="@drawable/bg_dark_fluid"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,302 +16,234 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="@string/permissions_title"
-            android:textColor="@color/neon_cyan"
-            android:textSize="22sp" />
+            android:text="XAVFSIZLIK VA RUXSATLAR"
+            android:textColor="@color/siri_cyan"
+            android:textSize="22sp"
+            android:letterSpacing="0.04" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/permissions_subtitle"
-            android:textColor="@color/text_secondary"
+            android:text="AI telefonni to'liq ovoz orqali boshqarishi uchun ruxsatlar"
+            android:textColor="@color/text_glass_secondary"
             android:textSize="13sp" />
 
         <!-- 1. Maxsus Imkoniyatlar (Accessibility Service) -->
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/perm_accessibility_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_status_accessibility"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Kutilmoqda"
-                        android:textColor="@color/neon_red"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="2dp"
-                    android:text="@string/perm_accessibility_desc"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_perm_accessibility"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_gradient"
-                    android:text="@string/btn_open_accessibility"
-                    android:textAllCaps="false"
-                    android:textColor="#05080E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- 2. Boshqa Ilovalar Ustida Ko'rinish (Overlay) -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/perm_overlay_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_status_overlay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Kutilmoqda"
-                        android:textColor="@color/neon_red"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="2dp"
-                    android:text="@string/perm_overlay_desc"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_perm_overlay"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_gradient"
-                    android:text="@string/btn_grant_overlay"
-                    android:textAllCaps="false"
-                    android:textColor="#05080E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- 3. Mikrofon va Ovoz Yozish -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/perm_audio_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_status_mic"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Kutilmoqda"
-                        android:textColor="@color/neon_red"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="2dp"
-                    android:text="@string/perm_audio_desc"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_perm_mic"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_gradient"
-                    android:text="@string/btn_grant_mic"
-                    android:textAllCaps="false"
-                    android:textColor="#05080E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- 4. Orqa Fonda Ishlash (Batareya) -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/perm_battery_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_status_battery"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Kutilmoqda"
-                        android:textColor="@color/neon_red"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="2dp"
-                    android:text="@string/perm_battery_desc"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_perm_battery"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_gradient"
-                    android:text="@string/btn_ignore_battery"
-                    android:textAllCaps="false"
-                    android:textColor="#05080E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Xavfsizlik Kafolati (Google Play Protect) -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="@color/bg_card_secondary"
-            app:cardCornerRadius="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_shield"
-                    android:drawablePadding="8dp"
+                    android:layout_alignParentStart="true"
                     android:fontFamily="sans-serif-bold"
-                    android:gravity="center_vertical"
-                    android:text="Xavfsizlik va Maxfiylik Kafolati"
-                    android:textColor="@color/neon_cyan"
-                    android:textSize="14sp" />
+                    android:text="1. Maxsus Imkoniyatlar (Accessibility)"
+                    android:textColor="@color/text_glass_primary"
+                    android:textSize="15sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_status_accessibility"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="2dp"
-                    android:text="Support AI Google Play xavfsizlik standartlariga to'liq rioya qiladi. Ilova sizning parollaringiz, shaxsiy yozishmalaringiz yoki bank ma'lumotlaringizni hech qachon saqlamaydi va uzatmaydi. U faqat siz ovoz orqali aytgan harakatlarni ekranda avtomatlashtirish uchun ruxsatlardan foydalanadi."
-                    android:textColor="@color/text_secondary"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Kutilmoqda"
+                    android:textColor="@color/neon_red"
                     android:textSize="12sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="YouTube da videoni o'tkazish, Telegramda xabar yozish, ilovalarni mustaqil ochish va tugmalarni bosish uchun zarur."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="13sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_perm_accessibility"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_glass_glow"
+                android:text="Sozlamalarga O'tish"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 2. Boshqa Ilovalar Ustida Ko'rinish (Overlay) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="2. Boshqa Ilovalar Ustida Ko'rinish"
+                    android:textColor="@color/text_glass_primary"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_status_overlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Kutilmoqda"
+                    android:textColor="@color/neon_red"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Boshqa ilovada turganda 'Hey AI' deganingizda ekranda suzuvchi Siri sharini chiqarish uchun."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="13sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_perm_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_glass_glow"
+                android:text="Overlay Ruxsati"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 3. Mikrofon -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="3. Mikrofon va Ovoz Yozish"
+                    android:textColor="@color/text_glass_primary"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_status_mic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Kutilmoqda"
+                    android:textColor="@color/neon_red"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="O'zbek, rus va ingliz tillaridagi buyruqlarni qabul qilish uchun."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="13sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_perm_mic"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_glass_glow"
+                android:text="Mikrofon Ruxsati"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 4. Orqa fonda ishlash -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_liquid_glass"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="4. Orqa Fonda Ishlash (Batareya)"
+                    android:textColor="@color/text_glass_primary"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_status_battery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Kutilmoqda"
+                    android:textColor="@color/neon_red"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tizim AI ni to'xtatib qo'ymasligi va 'Hey AI' chaqiruvini doim eshitib turishi uchun."
+                android:textColor="@color/text_glass_secondary"
+                android:textSize="13sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_perm_battery"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_glass_glow"
+                android:text="Cheklovni Yechish"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

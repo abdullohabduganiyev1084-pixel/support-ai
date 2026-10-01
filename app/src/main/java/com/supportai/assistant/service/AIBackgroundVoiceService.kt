@@ -57,96 +57,53 @@ class AIBackgroundVoiceService : Service() {
     private fun handleVoiceInput(text: String) {
         val clean = text.lowercase().trim()
 
-        // Hotword tekshirish: "Hey AI" yoki "Salom AI"
-        val isHotword = clean.contains("hey ai") || clean.contains("salom ai") || clean.contains("ai")
-
-        // Buyruqni tahlil qilish
-        val command = CommandParser.parse(clean)
-
         // Floating overlay ko'rsatish
         overlayManager.showOverlay("Siz: $text")
 
-        when (command) {
-            is AICommand.OpenYouTube -> {
-                val response = getString(R.string.ai_voice_ready_youtube)
-                AIAccessibilityService.instance?.automateYouTube(command.searchQuery) {
-                    overlayManager.updateText(response, autoHideSeconds = 6)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
-                } ?: run {
-                    overlayManager.updateText(response, autoHideSeconds = 6)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
+        kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).kotlinx.coroutines.launch {
+            val (command, responseSpeech) = GeminiAIEngine.processVoiceCommand(this@AIBackgroundVoiceService, clean)
+
+            overlayManager.updateText(responseSpeech, autoHideSeconds = 5)
+            voiceEngine.speak(responseSpeech)
+            broadcastUpdate(text, responseSpeech)
+
+            when (command) {
+                is AICommand.OpenYouTube -> {
+                    AIAccessibilityService.instance?.automateYouTube(command.searchQuery) {}
                 }
-            }
-
-            is AICommand.SeekVideo -> {
-                val response = getString(R.string.ai_voice_seeking)
-                // 10 minutlik videoda daqiqasiga qarab foiz hisoblash
-                val percent = (command.targetMinute.toFloat() / 15f).coerceIn(0.1f, 0.9f)
-                AIAccessibilityService.instance?.seekVideoProgress(percent)
-                overlayManager.updateText(response, autoHideSeconds = 4)
-                voiceEngine.speak(response)
-                broadcastUpdate(text, response)
-            }
-
-            is AICommand.OpenTelegram -> {
-                val response = getString(R.string.ai_voice_ready_telegram)
-                AIAccessibilityService.instance?.automateTelegram(command.chatTarget, command.messageText) {
-                    overlayManager.updateText(response, autoHideSeconds = 6)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
-                } ?: run {
-                    overlayManager.updateText(response, autoHideSeconds = 6)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
+                is AICommand.SeekVideo -> {
+                    val percent = (command.targetMinute.toFloat() / 15f).coerceIn(0.1f, 0.9f)
+                    AIAccessibilityService.instance?.seekVideoProgress(percent)
                 }
-            }
-
-            is AICommand.OpenGallery -> {
-                val response = getString(R.string.ai_voice_ready_gallery)
-                AIAccessibilityService.instance?.automateGallery {
-                    overlayManager.updateText(response, autoHideSeconds = 5)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
+                is AICommand.OpenTelegram -> {
+                    AIAccessibilityService.instance?.automateTelegram(command.chatTarget, command.messageText) {}
                 }
-            }
-
-            is AICommand.OpenSettings -> {
-                val response = getString(R.string.ai_voice_ready_settings)
-                AIAccessibilityService.instance?.automateSettings {
-                    overlayManager.updateText(response, autoHideSeconds = 5)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
+                is AICommand.OpenGallery -> {
+                    AIAccessibilityService.instance?.automateGallery {}
                 }
-            }
-
-            is AICommand.GoHome -> {
-                AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME)
-                overlayManager.hideOverlay()
-            }
-
-            is AICommand.GoBack -> {
-                AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK)
-                overlayManager.hideOverlay()
-            }
-
-            is AICommand.TypeText -> {
-                AIAccessibilityService.instance?.inputText(command.text)
-                overlayManager.updateText("Yozildi: ${command.text}", autoHideSeconds = 3)
-            }
-
-            is AICommand.Unknown -> {
-                if (isHotword) {
-                    val response = "Eshitmoqdaman! Nima yordam bera olaman?"
-                    overlayManager.updateText(response, autoHideSeconds = 4)
-                    voiceEngine.speak(response)
-                    broadcastUpdate(text, response)
+                is AICommand.OpenSettings -> {
+                    AIAccessibilityService.instance?.automateSettings {}
                 }
+                is AICommand.OpenCustomApp -> {
+                    AIAccessibilityService.instance?.launchAppByName(command.appName)
+                }
+                is AICommand.GoHome -> {
+                    AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME)
+                    overlayManager.hideOverlay()
+                }
+                is AICommand.GoBack -> {
+                    AIAccessibilityService.instance?.performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK)
+                    overlayManager.hideOverlay()
+                }
+                is AICommand.TypeText -> {
+                    AIAccessibilityService.instance?.inputText(command.text)
+                }
+                else -> {}
             }
         }
+        }
 
-        // Qayta eshitish uchun pauzadan so'ng tinglashni davom ettirish
+        // Qayta eshitish uchun tinglashni davom ettirish
         if (isListeningLoopActive) {
             voiceEngine.startListening()
         }

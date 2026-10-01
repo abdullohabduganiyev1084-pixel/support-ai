@@ -9,6 +9,7 @@ sealed class AICommand {
     data class OpenYouTube(val searchQuery: String? = null) : AICommand()
     data class SeekVideo(val targetMinute: Int, val targetSecond: Int = 0) : AICommand()
     data class OpenTelegram(val chatTarget: String? = null, val messageText: String? = null) : AICommand()
+    data class OpenCustomApp(val appName: String) : AICommand()
     object OpenGallery : AICommand()
     object OpenSettings : AICommand()
     object GoHome : AICommand()
