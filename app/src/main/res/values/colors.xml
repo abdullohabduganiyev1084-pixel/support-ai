@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Asosiy ranglar: Dark futuristic space & Neon -->
+    <color name="bg_main">#080B10</color>
+    <color name="bg_card">#121824</color>
+    <color name="bg_card_secondary">#1B2333</color>
+    <color name="bg_drawer">#0E1420</color>
+    
+    <!-- Neon gradient urg'ulari -->
+    <color name="neon_cyan">#00F2FE</color>
+    <color name="neon_blue">#4FACFE</color>
+    <color name="neon_purple">#8A2387</color>
+    <color name="neon_pink">#E94057</color>
+    <color name="neon_amber">#F27121</color>
+    <color name="neon_green">#00E676</color>
+    <color name="neon_red">#FF5252</color>
+
+    <!-- Matn ranglari -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
+    <color name="divider_color">#1E293B</color>
+
+    <!-- Ripple va holat -->
+    <color name="ripple_glow">#3300F2FE</color>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Support AI</string>
+
+    <!-- Google Play Protect & Android Xavfsizlik Talablariga mos tavsif -->
+    <string name="accessibility_service_description">Support AI ilovasi foydalanuvchining ovozli buyruqlari ("YouTubeni och", "Telegramda yoz", "Videoga o\'tkaz") orqali telefon ekranini ovoz bilan qulay boshqarish uchun Maxsus Imkoniyatlar (Accessibility) xizmatidan foydalanadi. Ilova hech qanday shaxsiy ma\'lumotlarni to\'plamaydi, serverga jo\'natmaydi va 100% xavfsizdir.</string>
+
+    <!-- Splash & Get Started -->
+    <string name="welcome_title">Support AI Assistant</string>
+    <string name="welcome_tagline">Kelajak ovozli intellekti sizning ixtiyoringizda</string>
+    <string name="welcome_desc">Telefoningizdagi barcha ilovalarni — YouTube, Telegram, Galereya, Sozlamalarni bitta ovozli buyruq bilan to\'liq nazorat qiling.</string>
+    <string name="btn_get_started">Boshlash</string>
+
+    <!-- Asosiy menyu va Sidebar -->
+    <string name="nav_main">Asosiy Qism</string>
+    <string name="nav_permissions">Ruxsatlar Markazi</string>
+    <string name="nav_settings">Sozlamalar</string>
+    <string name="nav_about">AI Haqida</string>
+
+    <!-- Asosiy Ekran -->
+    <string name="ai_status_active">AI Faoliyatda (Eshitmoqda)</string>
+    <string name="ai_status_inactive">AI O\'chirilgan</string>
+    <string name="ai_toggle_label">AI Ovozli Boshqaruv</string>
+    <string name="ai_wake_word_hint">"Hey AI" yoki "Salom AI" deb chaqiring</string>
+    <string name="btn_voice_test">Hozir Gapirish</string>
+    <string name="listening_text">AI sizni eshitmoqda...</string>
+    <string name="last_command_title">So\'nggi Buyruq:</string>
+    <string name="ai_response_title">AI Javobi:</string>
+    <string name="sample_command">Masalan: "YouTubeni och va O\'zbekiston haqida video qo\'y"</string>
+
+    <!-- Ruxsatlar Markazi -->
+    <string name="permissions_title">Xavfsizlik va Ruxsatlar</string>
+    <string name="permissions_subtitle">Ilova to\'liq va xavfsiz ishlashi uchun zarur ruxsatnomalar</string>
+    
+    <string name="perm_accessibility_title">1. Maxsus Imkoniyatlar (Accessibility)</string>
+    <string name="perm_accessibility_desc">Telefon ekranini boshqarish, tugmalarni bosish, matn yozish va videolarni minutiga o\'tkazish uchun zarur.</string>
+    <string name="btn_open_accessibility">Sozlamalarga O\'tish</string>
+
+    <string name="perm_overlay_title">2. Boshqa Ilovalar Ustida Ko\'rinish (Overlay)</string>
+    <string name="perm_overlay_desc">Boshqa ilovada (YouTube, Telegram) turganda "Hey AI" deganingizda animatsiyalik AI orb ko\'rinishi uchun.</string>
+    <string name="btn_grant_overlay">Overlay Ruxsati</string>
+
+    <string name="perm_audio_title">3. Mikrofon va Ovoz Yozish</string>
+    <string name="perm_audio_desc">O\'zbek, rus va ingliz tillaridagi buyruqlaringizni aniq qabul qilish uchun.</string>
+    <string name="btn_grant_mic">Mikrofon Ruxsati</string>
+
+    <string name="perm_battery_title">4. Orqa Fonda Ishlash (Batareya)</string>
+    <string name="perm_battery_desc">Boshqa ilovalar bilan ishlayotganda tizim AI ni to\'xtatib qo\'ymasligi uchun batareya cheklovini yechish.</string>
+    <string name="btn_ignore_battery">Cheklovni Yechish</string>
+
+    <string name="perm_notification_title">5. Bildirishnomalar</string>
+    <string name="perm_notification_desc">Orqa fon xizmati uzluksiz va barqaror ishlashi uchun doimiy status ko\'rsatish.</string>
+    <string name="btn_grant_notification">Xabarnoma Ruxsati</string>
+
+    <!-- Sozlamalar -->
+    <string name="settings_title">Ilova Sozlamalari</string>
+    <string name="setting_language_title">Tanish Tili (STT):</string>
+    <string name="lang_uz">O\'zbek tili (uz-UZ)</string>
+    <string name="lang_en">English (en-US)</string>
+    <string name="lang_ru">Русский язык (ru-RU)</string>
+    <string name="setting_tts_title">Ovozli Javob (TTS):</string>
+    <string name="setting_sensitivity_title">"Hey AI" Sezgirligi</string>
+
+    <!-- AI Ovozli Javoblari (Text to Speech) -->
+    <string name="ai_voice_ready_youtube">Tayyor! Qaysi videoga o\'tkizay?</string>
+    <string name="ai_voice_ready_telegram">Tayyor! Qaysi chat yoki kanalga xabar yozay?</string>
+    <string name="ai_voice_ready_gallery">Galereya ochildi. Qaysi rasmni qidiraylik?</string>
+    <string name="ai_voice_ready_settings">Telefon sozlamalari ochildi. Qaysi qismni sozlaymiz?</string>
+    <string name="ai_voice_done">Bajarildi!</string>
+    <string name="ai_voice_seeking">Videoni kerakli vaqtiga o\'tkazdim.</string>
+    <string name="ai_voice_unknown">Kechirasiz, buyruqni tushunmadim. Qaytadan gapiring.</string>
+    
+    <!-- Notification -->
+    <string name="notification_channel_name">Support AI Xizmati</string>
+    <string name="notification_title">Support AI faol</string>
+    <string name="notification_desc">"Hey AI" deb buyruq bering...</string>
+</resources>

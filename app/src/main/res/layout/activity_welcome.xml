@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:padding="28dp">
+
+    <!-- Orqa fon neon doiralari -->
+    <View
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-60dp"
+        android:layout_marginEnd="-60dp"
+        android:alpha="0.25"
+        android:background="@drawable/btn_mic_glow" />
+
+    <!-- Yuqori qism: Logo va Sarlovha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Glowing AI Logo -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_welcome_logo"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="16dp"
+            app:cardBackgroundColor="#000000">
+
+            <ImageView
+                android:id="@+id/img_welcome_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/support_ai_logo"
+                android:contentDescription="@string/app_name" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Ilova Nomi -->
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/welcome_title"
+            android:textColor="@color/neon_cyan"
+            android:textSize="28sp"
+            android:letterSpacing="0.04" />
+
+        <!-- Tagline -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/welcome_tagline"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Tavsif -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/welcome_desc"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Imkoniyatlar Chips -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="⚡ YouTube"
+                android:textColor="@color/neon_cyan"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="✈️ Telegram"
+                android:textColor="@color/neon_blue"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="🎙️ 3 Til (UZ/RU/EN)"
+                android:textColor="@color/neon_green"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Pastki qism: Get Started (Boshlash) tugmasi -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_get_started"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_gradient"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_get_started"
+        android:textAllCaps="false"
+        android:textColor="#05080E"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
